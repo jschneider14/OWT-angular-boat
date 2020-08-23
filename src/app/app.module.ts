@@ -16,6 +16,11 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ConfirmDialogComponent } from './component/shared/confirm-dialog/confirm-dialog.component';
 import { MatCardModule } from '@angular/material/card';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatSortModule } from '@angular/material/sort';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatTableModule  } from '@angular/material/table';
+import { MatInputModule  } from '@angular/material/input';
 import { ErrorDialogComponent } from './component/shared/error-dialog/error-dialog.component';
 import { LoginComponent } from './component/login/login.component';
 import { LogoutComponent } from './component/logout/logout.component';
@@ -32,6 +37,15 @@ import { HeaderComponent } from './component/header/header.component';
     LogoutComponent,
     HeaderComponent
   ],
+  exports: [
+    MatCardModule,
+    MatDialogModule,
+    MatPaginatorModule,
+    MatSortModule,
+    MatFormFieldModule,
+    MatTableModule,
+    MatInputModule
+  ],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -39,7 +53,12 @@ import { HeaderComponent } from './component/header/header.component';
     FormsModule,
     BrowserAnimationsModule,
     MatCardModule,
-    MatDialogModule
+    MatDialogModule,
+    MatPaginatorModule,
+    MatSortModule,
+    MatFormFieldModule,
+    MatTableModule,
+    MatInputModule
   ],
   providers: [
     AuthGuardService,

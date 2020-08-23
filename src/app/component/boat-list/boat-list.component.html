@@ -1,33 +1,63 @@
-<div class="table-responsive">
-  <table class="table table-striped">
-
-    <thead class="thead-dark">
-      <tr>
-        <th style="width: 20%">Name</th>
-        <th style="width: 50%">Description</th>
-        <th style="width: 20%">Type</th>
-        <th style="width: 5%"></th>
-        <th style="width: 5%"></th>
-      </tr>
-    </thead>
-
-    <tbody>
-      <tr *ngFor="let boat of boats">
-        <td>{{ boat.name }}</td>
-        <td>{{ boat.description }}</td>
-        <td>{{ boat.type.name }}</td>
-        <td><a routerLink="/boats/{{ boat.id }}" class="btn btn-dark" role="button" aria-pressed="true"><i class="fas fa-edit"></i></a></td>
-        <td><a (click)="onDelete(boat.id)" class="btn btn-dark" role="button" aria-pressed="true"><i class="far fa-trash-alt"></i></a></td>
-      </tr>
-    </tbody>
-
-    <tfoot>
-      <tr>
-        <td colspan="5">
-          <a routerLink="/boats/0" class="btn btn-dark mt-3 float-right"><i class="fas fa-plus-circle"></i>&nbsp;New</a>
-        </td>
-      </tr>
-    </tfoot>
-
-  </table>
+<div id="btn-zone">
+  <button routerLink="/boats/0" mat-raised-button class="btn btn-dark">
+    <i class="fas fa-plus-circle mat-icon"></i> Add
+  </button>
 </div>
+
+<mat-form-field>
+  <mat-label>Filter</mat-label>
+  <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Boat" #input>
+</mat-form-field>
+
+<div class="mat-elevation-z8">
+  <table mat-table [dataSource]="dataSource" matSort>
+
+    <!-- ID Column -->
+    <ng-container matColumnDef="id">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> ID </th>
+      <td mat-cell *matCellDef="let row"> {{ row.id }} </td>
+    </ng-container>
+
+    <!-- Name Column -->
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Name </th>
+      <td mat-cell *matCellDef="let row"> {{ row.name }} </td>
+    </ng-container>
+
+    <!-- Description Column -->
+    <ng-container matColumnDef="description">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Description </th>
+      <td mat-cell *matCellDef="let row"> {{ row.description }} </td>
+    </ng-container>
+
+    <!-- Type Column -->
+    <ng-container matColumnDef="type">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Type </th>
+      <td mat-cell *matCellDef="let row"> {{ row.type.name }} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="actionsColumn">
+      <th mat-header-cell *matHeaderCellDef> Action </th>
+      <td mat-cell *matCellDef="let row">
+          <button routerLink="/boats/{{ row.id }}" class="btn btn-dark btn-action mr-2" >
+            <i class="fas fa-edit mat-icon"></i>
+          </button>
+          <button mat-raised-button class="btn btn-dark btn-action" (click)="onDelete(row.id)">
+            <i class="fas fa-trash mat-icon"></i>
+          </button>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+    <!-- Row shown when there is no matching data. -->
+    <tr class="mat-row" *matNoDataRow>
+      <td class="mat-cell" colspan="4">No data matching the filter "{{ input.value }}"</td>
+    </tr>
+  </table>
+
+  <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+
+</div>
+
