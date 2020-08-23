@@ -1,0 +1,33 @@
+<div class="table-responsive">
+  <table class="table table-striped">
+
+    <thead class="thead-dark">
+      <tr>
+        <th style="width: 20%">Name</th>
+        <th style="width: 50%">Description</th>
+        <th style="width: 20%">Type</th>
+        <th style="width: 5%"></th>
+        <th style="width: 5%"></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr *ngFor="let boat of boats">
+        <td>{{ boat.name }}</td>
+        <td>{{ boat.description }}</td>
+        <td>{{ boat.type.name }}</td>
+        <td><a routerLink="/boats/{{ boat.id }}" class="btn btn-dark" role="button" aria-pressed="true"><i class="fas fa-edit"></i></a></td>
+        <td><a (click)="onDelete(boat.id)" class="btn btn-dark" role="button" aria-pressed="true"><i class="far fa-trash-alt"></i></a></td>
+      </tr>
+    </tbody>
+
+    <tfoot>
+      <tr>
+        <td colspan="5">
+          <a routerLink="/boats/0" class="btn btn-dark mt-3 float-right"><i class="fas fa-plus-circle"></i>&nbsp;New</a>
+        </td>
+      </tr>
+    </tfoot>
+
+  </table>
+</div>

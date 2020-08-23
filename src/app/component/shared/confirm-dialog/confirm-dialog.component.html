@@ -1,0 +1,12 @@
+<mat-card fxLayoutGap>
+
+  <h2 mat-dialog-title>{{data.title}}</h2>
+
+  <mat-dialog-content>{{data.message}}</mat-dialog-content>
+
+
+  <div mat-dialog-actions align="end">
+      <button mat-button class="btn btn-dark mr-3 float-right" (click)="onDismiss()">No</button>
+      <button mat-raised-button class="btn btn-danger float-right" (click)="onConfirm()">Yes</button>
+  </div>
+</mat-card>
