@@ -3,9 +3,7 @@
 ## Table of contents
 * [General info](#general-info)
 * [Technologies](#technologies)
-* [Setup](#setup)
-
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.1.8.
+* [Setup](#setup).
 
 ## General info
 Angular front end application for the web-app fullstack challenge of Open Web Technologie.
